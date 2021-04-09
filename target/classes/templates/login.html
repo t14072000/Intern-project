@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"></html>
+
+<head th:include="adminFragments :: admin-head" th:with="title='Login'" />
+
+<body>
+  <div class="main-wrapper">
+
+      <div class="preloader">
+          <div class="lds-ripple">
+              <div class="lds-pos"></div>
+              <div class="lds-pos"></div>
+          </div>
+      </div>
+
+      <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative">
+          <div class="auth-box row" style="width: 800px;" >
+              <div class="col-lg-7 col-md-5 modal-bg-img" style="padding-left: 0;">
+                <img style="width: 100%; height: 100%;" th:src="@{/image/login.jpg}">
+              </div>
+              <div class="col-lg-5 col-md-7 bg-white">
+                  <div class="p-3">
+                      <div class="text-center">
+                          <img th:src="@{/admin-template/assets/images/big/icon.png}" alt="wrapkit">
+                      </div>
+                      <h2 class="mt-3 text-center">Sign In</h2>
+                      <p class="text-center">Enter your email address and password to access admin panel.</p>
+                      <form id="login-form" class="mt-4" th:action="@{login}" method="POST">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                  <div class="form-group">
+                                      <label class="text-dark">Username</label>
+                                      <input class="form-control" type="text" name="username"
+                                          placeholder="Enter your username" >
+                                      <label for="username" generated="true" class="error" style="margin-bottom: 0;"></label>
+                                  </div>
+                              </div>
+                              <div class="col-lg-12">
+                                  <div class="form-group">
+                                      <label class="text-dark">Password</label>
+                                      <input class="form-control" type="password" name="password"
+                                          placeholder="Enter your password">
+                                      <label for="password" generated="true" class="error" style="margin-bottom: 0;"></label>
+                                  </div>
+                              </div>
+                              <div class="col-lg-12 text-center">
+                                  <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                              </div>
+                              <div class="col-lg-12 text-center" th:if="${param.error}" style="color: red;">
+                                  Invalid username and password.
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <style th:inline="text">
+          .auth-wrapper{
+              background: url([[@{/admin-template/assets/images/big/auth-bg.jpg}]])
+                          no-repeat center center;
+          }
+      </style>
+  </div>
+  <script th:src="@{/js/validation/validateLogin.js}"></script>
+  <div th:include="adminFragments :: admin-script" />
+</body>
+
+</html>

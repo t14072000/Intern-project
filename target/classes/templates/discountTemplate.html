@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments :: head" th:with="title=${Post.title}" />
+
+<body>
+  <div th:include="fragments :: navigation-bar" />
+
+  <div style="min-height: 500px;" class="body">
+
+    <div th:replace="fragments :: bread-crumb(categoryList=${breadCrumbCategoryList}, title=${Post.title})">
+
+    </div>
+
+    <div class="body-container">
+
+      <div class="main-panel">
+        <div class="post-box" style="min-height: 300px;" >
+
+          <h1 th:text="${Post.title}"></h1>
+
+          <div class="post-info">
+            <span th:text="'Đăng bởi ' + ${Post.author} + ' | ' + 'Vào ngày: ' + ${#dates.format(Post.date, 'dd-MM-yyyy')}"></span>
+          </div>
+
+          <div class="content" style="min-height: 175px;">
+            <div style="float:right;" th:if="${Post.image} != null and ${Post.image} != ''">
+              <img th:src="@{'/image/'+${Post.image}}" th:alt="${Post.title}" style="max-width: 200px; max-height: 160px; padding-left: 20px">
+            </div>
+            <p th:text="${Post.description}"></p>
+          </div>
+
+          <div class="content">
+            <div th:utext="${Post.postContent}">
+
+            </div>
+          </div>
+        </div>
+        <div th:replace="fragments :: commentBox(postId=${Post.postId})"/>
+
+        <th:block th:if="${commentList != null and !commentList.isEmpty()} " th:each="commentDTO : ${commentList}">
+          <div th:replace="fragments :: comment(username=${commentDTO.username},date=${commentDTO.datetime},content=${commentDTO.commentContent})"/>
+        </th:block>
+
+      </div>
+
+      <div class="side-panel">
+        <div th:replace="fragments :: fix-side-panel" th:with="couponList=${couponList}"/>
+      </div>
+    </div>
+  </div>
+  <div th:include="fragments :: footer" />
+</body>
+
+</html>

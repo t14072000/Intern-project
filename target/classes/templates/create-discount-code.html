@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="adminFragments :: admin-head" th:with="title='Create discount'" />
+
+<body>
+
+  <div th:replace="adminFragments :: admin-preloader" />
+  <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+    <div th:replace="adminFragments :: admin-navigation-topbar(user=${username})" />
+
+    <div th:replace="adminFragments :: admin-navigation-sidebar" />
+
+    <div class="page-wrapper">
+
+      <div th:replace="adminFragments :: admin-page-greeting(user=${username})" />
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12" style="padding: 0 100px">
+            <div class="card">
+              <div class="card-body">
+                <form id="content-form" method="post" enctype="multipart/form-data">
+                  <h1 style="margin-bottom: 60px;">Create discount</h1>
+                    <input class="form-input form-control form-control-lg" type="text" name="txtDiscountName" value="" placeholder="Discount name" />
+                    <label for="txtDiscountName" generated="true" class="error"></label><br />
+
+                    <input class="form-input form-control form-control-lg" type="text" name="txtDiscountCode" value="" placeholder="Discount code" />
+                    <label for="txtDiscountCode" generated="true" class="error"></label><br />
+
+                    <input class="form-input form-control form-control-lg" type="text" name="txtPercentage" value="" placeholder="Amount(%)" />
+                    <label for="txtPercentage" generated="true" class="error"></label><br />
+
+                    <input class="form-input form-control form-control-lg" type="text" name="txtDiscountLink" value="" placeholder="Discount link" />
+                    <label for="txtDiscountLink" generated="true" class="error"></label><br />
+
+                    <button class="submit" type="submit"><span>Submit</span></button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div th:include="adminFragments :: admin-script" />
+
+  <script th:src="@{/js/validation/validateCreateDiscountCode.js}"></script>
+  <script th:src="@{/js/ajax/create-discount-code.js}"></script>
+</body>
+
+</html>

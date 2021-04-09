@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="adminFragments :: admin-head" th:with="title='Search article'" />
+
+<body>
+
+  <div th:replace="adminFragments :: admin-preloader" />
+
+  <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+    <div th:replace="adminFragments :: admin-navigation-topbar(user=${username})" />
+
+    <div th:replace="adminFragments :: admin-navigation-sidebar" />
+
+    <div class="page-wrapper">
+
+      <div th:replace="adminFragments :: admin-page-greeting(user=${username})" />
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12" style="padding: 0 100px">
+            <div class="card">
+              <div class="card-body">
+
+                <form id="content-form" th:action="@{/admin/search-article}">
+                  <h1 style="margin-bottom: 60px;">Search article</h1>
+
+                  <input class="chosen-value form-control form-control-lg" type="text" name="txtCategory" th:value="${categoryName}" placeholder="Select category" />
+                  <ul class="value-list">
+                    <li th:each="category : ${categoryList}" th:text="${category.categoryName}"></li>
+                  </ul>
+                  <label for="txtCategory" generated="true" class="error"></label>
+                  <br />
+
+                  <input class="form-input form-control form-control-lg" type="text" name="txtTitle" th:value="${searchTitle}" placeholder="Title" /> <br />
+                  <label for="txtTitle" generated="true" class="error"></label>
+                  <br />
+
+                  <button class="submit" type="submit"><span>Search</span></button>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" th:if="${postDTOList != null and !postDTOList.isEmpty()}">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+
+                <div class="table-responsive">
+                  <table id="data-table-article" class="table table-striped table-bordered no-wrap" style="font-family: Verdana;">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Description</th>
+                        <th>Create date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="post : ${postDTOList}">
+                        <td class="text-center">
+                          <a th:href="@{'/admin/update-article/'+${post.postId}}" th:title="${post.title}">
+                            <img style="width: 100px;" th:if="${post.image} != null and ${post.image} != ''" th:src="@{'/image/'+${post.image}}">
+                            <img style="width: 100px;" th:if="${post.image} == null or ${post.image} == ''" th:src="@{/image/no_image.png}">
+                          </a>
+                        </td>
+                        <td>
+                          <a th:href="@{'/admin/update-article/'+${post.postId}}" th:text="${post.title}" class="font-weight-bold link"></a>
+                        </td>
+                        <td th:text="${post.author}"></td>
+                        <td th:text="${#strings.abbreviate(post.description,30)}"></td>
+                        <td th:text="${post.date}"></td>
+                        <td class="text-center">
+                          <div th:if= "!${post.status}">
+                            <span style="display: none;">False</span>
+                            <i class="fa fa-circle text-danger font-12" data-toggle="tooltip" data-placement="top" title="Disable"></i>
+                          </div>
+                          <div th:if= "${post.status}">
+                            <span style="display: none;">True</span>
+                            <i class="fa fa-circle text-success font-12" data-toggle="tooltip" data-placement="top" title="Active"></i>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th></th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Description</th>
+                        <th>Create date</th>
+                        <th>Status</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div th:include="adminFragments :: admin-script" />
+
+  <script th:src="@{/js/validation/validateSearchArticle.js}"></script>
+  <script th:src="@{/js/selectInput.js}"></script>
+  <script th:src="@{/admin-template/js/search-datatable-init.js}"></script>
+</body>
+
+</html>

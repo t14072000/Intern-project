@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments :: head" th:with="title=${Post.title}" />
+
+<body>
+  <div th:include="fragments :: navigation-bar" />
+
+  <div style="min-height: 500px;" class="body">
+    <div th:replace="fragments :: bread-crumb(categoryList=${breadCrumbCategoryList}, title=${Post.title})">
+    </div>
+
+    <div th:replace="fragments :: second-navigation-bar(link=${link}, categoryList=${categoryList})">
+    </div>
+
+    <div class="body-container">
+
+      <div class="main-panel">
+
+        <div class="post-box" style="min-height: 300px;">
+
+          <h1 th:text="${Post.title}"></h1>
+
+          <div class="post-info">
+            <span th:text="'Đăng bởi ' + ${Post.author} + ' | ' + 'Vào ngày: ' + ${#dates.format(Post.date, 'dd-MM-yyyy')}"></span>
+          </div>
+
+          <div class="content" style="min-height: 175px;">
+            <div style="float:right;" th:if="${Post.image} != null and ${Post.image} != ''">
+              <img th:src="@{'/image/'+${Post.image}}" th:alt="${Post.title}" style="max-width: 200px; max-height: 160px; padding-left: 20px">
+            </div>
+            <p th:text="${Post.description}"></p>
+          </div>
+
+          <div class="content">
+            <div th:utext="${Post.postContent}">
+
+            </div>
+          </div>
+
+        </div>
+
+        <div th:if="${!categoryCourseMapping.empty}" class="show-course">
+					<div th:each="categoryCourse : ${categoryCourseMapping}" >
+						<div th:if="${categoryCourse.value.size gt 0}">
+              <header class="box-header">
+                <h2 th:text="${categoryCourse.key}"></h2>
+              </header>
+							<table>
+								<tr th:each="postCourse : ${categoryCourse.value}">
+									<td>
+										<a th:href="@{'/' + ${postCourse.key.postId}}">
+
+											<img th:if="${postCourse.key.image != null and postCourse.key.image != ''}"
+												th:src="@{'/image/' + ${postCourse.key.image}}" style="height: 60px; width: 75px"/>
+
+											<img th:if="${postCourse.key.image == null or postCourse.key.image == ''}"
+												th:src="@{'/image/no_image.png'}" style="height: 60px; width: 75px"/>
+
+										</a>
+									</td>
+									<td>
+										<a th:href="@{'/' + ${postCourse.key.postId}}">
+											<h5 th:text="${postCourse.value.courseName}"></h5>
+											<p style="color: black;">
+												Giá: <strong style="color: red"
+												th:text="${#numbers.formatDecimal(postCourse.value.discountPrice, 0, 'COMMA', 0, 'POINT')} + 'đ'"></strong>
+											</p>
+										</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+        <header class="box-header" th:if="${listPost != null}">
+          <h2>Review</h2>
+        </header>
+        <div th:insert="fragments :: list-post"></div>
+
+      </div>
+
+      <div class="side-panel">
+        <div th:replace="fragments :: fix-side-panel" th:with="couponList=${couponList}"/>
+      </div>
+    </div>
+  </div>
+  <div th:include="fragments :: footer" />
+</body>
+
+</html>
