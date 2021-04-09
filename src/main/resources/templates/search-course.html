@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="adminFragments :: admin-head" th:with="title='Search course'" />
+
+<body>
+
+  <div th:replace="adminFragments :: admin-preloader" />
+
+  <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+    <div th:replace="adminFragments :: admin-navigation-topbar(user=${username})" />
+
+    <div th:replace="adminFragments :: admin-navigation-sidebar" />
+
+    <div class="page-wrapper">
+
+      <div th:replace="adminFragments :: admin-page-greeting(user=${username})" />
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12" style="padding: 0 100px">
+            <div class="card">
+              <div class="card-body">
+                <h1 style="margin-bottom: 60px;">Search course</h1>
+
+                <div class="table-responsive">
+                  <table id="data-table-article" class="table table-striped table-bordered no-wrap" style="font-family: Verdana;">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Link</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Discounted price</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="course : ${courseDTOList}">
+                        <td th:text="${course.courseId}"></td>
+                        <td>
+                          <a th:href="@{'/admin/update-course/'+${course.courseId}}" th:text="${course.courseName}" class="font-weight-bold link"></a>
+                        </td>
+                        <td th:text="${course.teacher}"></td>
+
+                        <td th:if= "${course.time != null}" th:text="${course.time} + ' giờ'"></td>
+                        <td th:if= "${course.time == null}"></td>
+
+                        <td th:text="${course.link}"></td>
+                        <td th:text="${#numbers.formatDecimal(course.price, 0, 0)} + 'đ'"></td>
+                        <td th:text="${course.discount} + '%'"></td>
+                        <td th:text="${#numbers.formatDecimal(course.discountPrice, 0, 0)} + ' đ'"></td>
+                        <td th:text="${course.type}"></td>
+                        <td class="text-center">
+                          <div th:if= "!${course.status}">
+                            <span style="display: none;">False</span>
+                            <i class="fa fa-circle text-danger font-12" data-toggle="tooltip" data-placement="top" title="Disable"></i>
+                          </div>
+                          <div th:if= "${course.status}">
+                            <span style="display: none;">True</span>
+                            <i class="fa fa-circle text-success font-12" data-toggle="tooltip" data-placement="top" title="Active"></i>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Link</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Discounted price</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div th:include="adminFragments :: admin-script" />
+
+  <script th:src="@{/admin-template/js/search-datatable-init.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments :: head" th:with="title=${Post.title}" />
+
+<body>
+  <div th:include="fragments :: navigation-bar" />
+
+  <div style="min-height: 500px;" class="body">
+    <div th:replace="fragments :: bread-crumb(categoryList=${breadCrumbCategoryList}, title=${Post.title})">
+    </div>
+
+    <div th:replace="fragments :: second-navigation-bar(link=${link}, categoryList=${categoryList})">
+    </div>
+
+    <div class="body-container">
+
+      <div class="main-panel">
+
+        <div class="post-box" style="min-height: 300px;">
+
+          <h1 th:text="${Post.title}"></h1>
+
+          <div class="post-info">
+            <span th:text="'Đăng bởi ' + ${Post.author} + ' | ' + 'Vào ngày: ' + ${#dates.format(Post.date, 'dd-MM-yyyy')}"></span>
+          </div>
+
+          <div class="content" style="min-height: 175px;">
+            <div style="float:right;" th:if="${Post.image} != null and ${Post.image} != ''">
+              <img th:src="@{'/image/'+${Post.image}}" th:alt="${Post.title}" style="max-width: 200px; max-height: 160px; padding-left: 20px">
+            </div>
+            <p th:text="${Post.description}"></p>
+          </div>
+          <div class="content">
+            <h2>Giới thiệu</h2>
+            <table>
+              <tbody>
+                <tr th:if="${courseDTO.courseName} != null and ${courseDTO.courseName} != ''">
+                  <td>Khóa học</td>
+                  <td th:text="${courseDTO.courseName}"></td>
+                </tr>
+                <tr th:if="${courseDTO.type} != null and ${courseDTO.type} != ''">
+                  <td>Hình thức học</td>
+                  <td th:text="${courseDTO.type}"></td>
+                </tr>
+                <tr th:if="${courseDTO.teacher} != null and ${courseDTO.teacher} != ''">
+                  <td>Giảng viên</td>
+                  <td th:text="${courseDTO.teacher}"></td>
+                </tr>
+                <tr th:if="${courseDTO.time} != null and ${courseDTO.time} != ''">
+                  <td>Thời lượng</td>
+                  <td th:text="${courseDTO.time} + ' giờ'"></td>
+                </tr>
+                <tr th:if="${courseDTO.price} != null and ${courseDTO.price} != ''">
+                  <td>Giá gốc</td>
+                  <td>
+                    <strong style="text-decoration: line-through" th:text="${#numbers.formatDecimal(courseDTO.price, 3, 'COMMA', 0, 'POINT')} + 'đ'"></strong>
+                  </td>
+                </tr>
+                <tr th:if="${courseDTO.link} != null and ${courseDTO.link} != ''">
+                  <td>Link khóa học</td>
+                  <td>
+                    <a th:href="${courseDTO.link}" th:text="${courseDTO.link}"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="post-box" style="background-color:#d7edf5;border-color:#bddde9;padding: 35px 40px;">
+                <h3 style="margin-top: 0px; ">Đăng ký ngay hôm nay để được giảm giá</h3>
+                <h4>
+                    <span style="color: #1c6f8e;">
+                      Cơ hội mua khóa học này chỉ với
+                      <strong style="color: red" th:text="${#numbers.formatDecimal(courseDTO.discountPrice, 3, 'COMMA', 0, 'POINT')+ 'đ'}"></strong>
+                       khi đăng ký tại freetuts.net
+                     </span>
+                </h4>
+                <div>
+                    <p>
+                       Freetuts.net là đại lý cung cấp khóa học online và offline với giá rẻ nhất,
+                        giảm lên đến <strong>35%</strong> cho khóa học này, nhanh tay đăng ký nhé bạn.
+                    </p>
+                </div>
+            </div>
+
+            <th:block th:if="${orderList != null and !orderList.isEmpty()} " >
+            <h2>Học viên đã mua khóa học này</h2>
+            <table>
+              <tbody>
+                <tr th:each="order : ${orderList}">
+                  <td th:text="${order.customerName}"></td>
+                  <td th:text="${'****' + #strings.substring(order.email,4,order.email.length())}"></td>
+                </tr>
+              </tbody>
+            </table>
+            </th:block>
+
+            <div th:utext="${Post.postContent}">
+
+            </div>
+          </div>
+
+        </div>
+
+        <div th:replace="fragments :: order-form(bankPayment=${bankPayment},postPayment=${postPayment},paypalPayment=${paypalPayment},courseId=${courseDTO.courseId})"/>
+
+        <div th:replace="fragments :: commentBox(postId=${Post.postId})"/>
+
+        <th:block th:if="${commentList != null and !commentList.isEmpty()} " th:each="commentDTO : ${commentList}">
+          <div th:replace="fragments :: comment(username=${commentDTO.username},date=${commentDTO.datetime},content=${commentDTO.commentContent})"/>
+        </th:block>
+
+
+      </div>
+
+      <div class="side-panel">
+        <div th:replace="fragments :: fix-side-panel" th:with="couponList=${couponList}"/>
+      </div>
+    </div>
+  </div>
+  <div th:include="fragments :: footer" />
+</body>
+
+</html>

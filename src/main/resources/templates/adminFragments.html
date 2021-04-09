@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/">
+
+<head th:fragment="admin-head">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+  <link rel="icon" th:href="@{/image/freetuts-icon.ico}" />
+  <!-- Custom CSS -->
+  <link th:href="@{/admin-template/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css}" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link th:href="@{/admin-template/dist/css/style.min.css}" rel="stylesheet">
+
+  <link th:href="@{/css/form-styles.css}" rel="stylesheet">
+  <title th:text=${title}></title>
+
+</head>
+
+<body>
+
+  <div th:fragment="admin-preloader" class="preloader">
+    <div class="lds-ripple">
+      <div class="lds-pos"></div>
+      <div class="lds-pos"></div>
+    </div>
+  </div>
+
+  <header th:fragment="admin-navigation-topbar(user)" class="topbar" data-navbarbg="skin6">
+    <nav class="navbar top-navbar navbar-expand-md">
+      <div class="navbar-header" data-logobg="skin6">
+        <!-- This is for the sidebar toggle which is visible on mobile only -->
+        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+
+        <div class="navbar-brand">
+          <!-- Logo icon -->
+          <a th:href="@{/admin/dashboard}">
+            <b class="logo-icon">
+              <!-- Logo icon -->
+              <img th:src="@{/admin-template/assets/images/logo-icon.png}" alt="homepage" class="dark-logo" />
+            </b>
+            <!--End Logo icon -->
+            <!-- Logo text -->
+            <span class="logo-text">
+              <!-- Logo text -->
+              <img th:src="@{/admin-template/assets/images/logo-text.png}" alt="homepage" class="dark-logo" />
+            </span>
+          </a>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- Toggle which is visible on mobile only -->
+        <!-- ============================================================== -->
+        <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="ti-more"></i>
+        </a>
+      </div>
+
+      <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
+
+        </ul>
+        <!-- ============================================================== -->
+        <!-- Right side toggle and nav items -->
+        <!-- ============================================================== -->
+        <ul class="navbar-nav float-right">
+          <!-- ============================================================== -->
+          <!-- User profile and search -->
+          <!-- ============================================================== -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img th:src="@{/admin-template/assets/images/users/profile-pic.jpg}" alt="user" class="rounded-circle" width="40">
+              <span class="ml-2 d-none d-lg-inline-block">
+                <span>Hello,</span>
+                <span class="text-dark" th:text="${user}"></span>
+                <i data-feather="chevron-down" class="svg-icon"></i>
+              </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY" style="padding-bottom: 0;">
+              <a class="dropdown-item" th:href="@{/logout}">
+                <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <!-- ============================================================== -->
+          <!-- User profile and search -->
+          <!-- ============================================================== -->
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- Left Sidebar - style you can find in sidebar.scss  -->
+  <!-- ============================================================== -->
+  <aside th:fragment="admin-navigation-sidebar" class="left-sidebar" data-sidebarbg="skin6">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar" data-sidebarbg="skin6">
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav">
+        <ul id="sidebarnav">
+          <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/admin/dashboard}" aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span class="hide-menu">Dashboard</span></a>
+          </li>
+          <li class="list-divider"></li>
+
+          <li class="nav-small-cap">
+            <span class="hide-menu">Posts</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+              <i data-feather="file-text" class="feather-icon"></i>
+              <span class="hide-menu">
+                Articles
+              </span>
+            </a>
+            <ul aria-expanded="false" class="collapse first-level base-level-line">
+              <li class="sidebar-item">
+                <a th:href="@{/admin/post-article}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Post Article
+                  </span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a th:href="@{/admin/search-article}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Update Article
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+              <i data-feather="sidebar" class="feather-icon"></i>
+              <span class="hide-menu">
+                Categories
+              </span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+              <li class="sidebar-item">
+                <a th:href="@{/admin/create-category}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Create Category
+                  </span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a th:href="@{/admin/search-category}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Update Category
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+              <i data-feather="book-open" class="feather-icon"></i>
+              <span class="hide-menu">
+                Courses
+              </span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+              <li class="sidebar-item">
+                <a th:href="@{/admin/create-course}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Create Course
+                  </span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a th:href="@{/admin/search-course}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Update Course
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="list-divider"></li>
+          <li class="nav-small-cap"><span class="hide-menu">Discounts</span></li>
+          <li class="sidebar-item">
+            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+              <i data-feather="tag" class="feather-icon"></i>
+              <span class="hide-menu">
+                Discounts
+              </span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+              <li class="sidebar-item">
+                <a th:href="@{/admin/create-discount-code}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Create Discount
+                  </span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a th:href="@{/admin/search-discount}" class="sidebar-link">
+                  <span class="hide-menu">
+                    Update Discount
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="list-divider"></li>
+          <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>
+          <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/admin/register}" aria-expanded="false">
+              <i data-feather="lock" class="feather-icon"></i>
+              <span class="hide-menu">
+                Register
+              </span>
+            </a>
+          </li>
+
+          <li class="list-divider"></li>
+          <li class="nav-small-cap">
+            <span class="hide-menu">
+              Extra
+            </span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link sidebar-link" th:href="@{/logout}" aria-expanded="false">
+              <i data-feather="log-out" class="feather-icon"></i>
+              <span class="hide-menu">
+                Logout
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+  </aside>
+
+  <div th:fragment="admin-page-greeting(user)" class="page-breadcrumb">
+    <div class="row">
+      <div class="col-7 align-self-center">
+        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1" th:text="'Good Morning ' + ${user} + '!'"></h3>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="card(total,type,icon)" class="card border-right">
+    <div class="card-body">
+      <div class="d-flex d-lg-flex d-md-block align-items-center">
+        <div>
+          <div class="d-inline-flex align-items-center">
+            <h2 class="text-dark mb-1 font-weight-medium" th:text="${total}"></h2>
+          </div>
+          <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" th:text="${type}"></h6>
+        </div>
+        <div class="ml-auto mt-md-3 mt-lg-0">
+          <span class="opacity-7 text-muted"><i th:data-feather="${icon}"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="admin-script">
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <!-- Bootstrap tether Core JavaScript -->
+    <script th:src="@{/admin-template/assets/libs/popper.js/dist/umd/popper.min.js}"></script>
+    <script th:src="@{/admin-template/assets/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <!-- apps -->
+    <!-- apps -->
+    <script th:src="@{/admin-template/dist/js/app-style-switcher.js}"></script>
+    <script th:src="@{/admin-template/dist/js/feather.min.js}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script th:src="@{/admin-template/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+    <script th:src="@{/admin-template/dist/js/sidebarmenu.js}"></script>
+    <script th:src="@{/admin-template/assets/extra-libs/sparkline/sparkline.js}"></script>
+    <!--Custom JavaScript -->
+    <script th:src="@{/admin-template/dist/js/custom.min.js}"></script>
+    <!--This page plugins -->
+    <script th:src="@{/admin-template/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js}"></script>
+  </div>
+</body>
+
+</html>

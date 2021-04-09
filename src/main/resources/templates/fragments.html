@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" th:href="@{/css/category.css}">
+  <link rel="stylesheet" th:href="@{/css/navigation-styles.css}">
+  <link rel="stylesheet" th:href="@{/css/footer-styles.css}">
+  <link rel="stylesheet" th:href="@{/css/styles1.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
+  <script src="https://kit.fontawesome.com/8df1ce0b7c.js" crossorigin="anonymous"></script>
+  <script th:src="@{/js/font-awesome.js}" charset="utf-8"></script>
+  <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="icon" th:href="@{/image/freetuts-icon.ico}" />
+  <link rel="stylesheet" th:href="@{/css/owlcarousel/owl.carousel.min.css}">
+  <link rel="stylesheet" th:href="@{/css/owlcarousel/owl.theme.default.min.css}">
+  <link rel="stylesheet" th:href="@{/css/owlcarousel/owl.theme.default.css}">
+  <link rel="stylesheet" th:href="@{/css/vs.css}">
+
+  <title th:text=${title}></title>
+</head>
+
+<body>
+  <div th:fragment="navigation-bar">
+    <div class="header">
+      <div class="container">
+        <div class="logo">
+          <a th:href="@{/Freetuts}">
+            <img class="freetuts-logo" src="image/logo.png">
+          </a>
+        </div>
+        <div class="right-header">
+          <div class="right-block">
+            <div class="social">
+              <ul class="social-list">
+                <li class="social-icon">
+                  <a href="https://www.facebook.com/freetuts/" class="holder facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li class="social-icon">
+                  <a href="https://www.youtube.com/channel/UC0jGwW2AfbsGbuY_Z3jtkAg" class="holder youtube">
+                    <i class="icon-youtube"></i>
+                  </a>
+                </li>
+                <li class="social-icon">
+                  <a href="https://twitter.com/freetuts_net" class="holder twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="social-icon">
+                  <a href="https://freetuts.net/skype:thehalfheart?call" class="holder skype">
+                    <i class="fab fa-skype"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="search-form">
+              <form method="get" action="https://www.google.com.vn/search" target="_blank" onsubmit="jQuery('#q1').val('site:freetuts.net ' + jQuery('#q_tmp').val())">
+                <input class="search-input" placeholder="Search ..." value="" onkeypress="" autocomplete="off" id="q_tmp">
+                <input type="hidden" name="q" id="q1" value="">
+                <button class="search-button" type="submit">
+                  <i class="icon-search"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navigation">
+      <div class="navigation-container">
+        <ul class="navigation-list">
+          <li class="navigation-item-container">
+            <a th:href="@{/Freetuts}" class="navigation-menu-item home-icon">
+              <i class="fas fa-home"></i>
+            </a>
+          </li>
+          <li class="navigation-item-container">
+            <a href="#" class="navigation-menu-item">
+              Bắt đầu
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Học Pascal</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/hoc-c}">Học C / C++</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/giai-thuat}">Giải thuật</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Học SQL Server</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/java}">Học Java</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container-full">
+            <a href="#" class="navigation-menu-item">
+              Lập Trình
+            </a>
+            <ul class="dropdown_menu_full">
+              <li class="dropdown_menu_full_item">
+                <a th:href="@{/programming}">Programming</a>
+                <ul class="sub_menu_list">
+                  <li class="sub_menu_list_item">
+                    <a th:href="@{/python}">Python</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a th:href="@{/java}">Java</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Pascal</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a th:href="@{/hoc-csharp}">Học C#</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học Ruby</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học Swift</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a th:href="@{/hoc-c}">C / C++</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Kotlin</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Golang</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a th:href="@{/giai-thuat}">Giải thuật</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Visual Basic</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_menu_full_item">
+                <a href="javascript:void(0)">Web Frontend</a>
+                <ul class="sub_menu_list">
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Javascript</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">AngularJS</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">jQuery</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">jQuery Mobile</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">HTML & CSS</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Bootstrap</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">TypeScript</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">SASS CSS</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">VueJS</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">NestJS</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học ReactJS</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_menu_full_item">
+                <a href="javascript:void(0)">Web Backend</a>
+                <ul class="sub_menu_list">
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">PHP</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Codeigniter</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Laravel</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Phalcon</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">OpenCart</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">NodeJS</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_menu_full_item">
+                <a href="javascript:void(0)">Mobile Dev</a>
+                <ul class="sub_menu_list">
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">React Native</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học iOS</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Android</a>
+                  </li>
+                </ul>
+                <a style="margin-top: 33px" href="javascript:void(0)">Database</a>
+                <ul class="sub_menu_list">
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">CSDL căn bản</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học SQLite</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học MySQL</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học SQL Server</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học Oracle</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học MongoDB</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_menu_full_item">
+                <a href="javascript:void(0)">Công cụ</a>
+                <ul class="sub_menu_list">
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Học Git</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Testing</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Dev Tool</a>
+                  </li>
+                  <li class="sub_menu_list_item">
+                    <a href="javascript:void(0)">Control Panel</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/khoa-hoc}" class="navigation-menu-item">
+              Khóa học
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a th:href="@{/khoa-hoc-lap-trinh}">Khóa học lập trình</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/khoa-hoc-tin-hoc}">Khóa học tin học VP</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/khoa-hoc-thiet-ke}">Khóa học thiết kế</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/khoa-hoc-khac}">Khóa học khác</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/webmaster}" class="navigation-menu-item">
+              Website
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item sub_menu_container">
+                <a href="javascript:void(0)">
+                  <i class="far fa-hand-point-right"></i>
+                  Nên dùng
+                  <i class="fas fa-angle-right"></i>
+                </a>
+                <ul class="sub_menu">
+                  <li class="sub_menu_item">
+                    <a href="javascript:void(0)">Hosting tốt nhất</a>
+                  </li>
+                  <li class="sub_menu_item">
+                    <a href="javascript:void(0)">VPS tốt nhất</a>
+                  </li>
+                  <li class="sub_menu_item">
+                    <a href="javascript:void(0)">Mua domain ở đâu</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/kien-thuc-domain}">
+                  Kiến thức Domain
+                </a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/thu-thuat-hosting}">
+                  Thủ thuật Hosting
+                </a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/hoc-wordpress}">
+                  Học WordPress
+                </a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/quan-tri-linux}">
+                  Quản trị Linux
+                </a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/quan-tri-windows}">
+                  Quản trị Windows
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/giam-gia}" class="navigation-menu-item">
+              Mã giảm giá
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Tinohost</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Azdigi</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Vultr</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/tin-hoc}" class="navigation-menu-item">
+              Tin học
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a th:href="@{/word}">Word</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/excel}">Excel</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/powerpoint}">PowerPoint</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/access}">Access</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/photoshop}">Photoshop</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/thu-thuat}" class="navigation-menu-item">
+              Thủ thuật
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item sub_menu_container">
+                <a th:href="@{/cuu-ho-may-tinh}">
+                  Cứu hộ máy tính
+                  <i class="fas fa-angle-right"></i>
+                </a>
+                <ul class="sub_menu">
+                  <li class="sub_menu_item">
+                    <a th:href="@{/ghost-win}">Cách ghost Win</a>
+                  </li>
+                  <li class="sub_menu_item">
+                    <a th:href="@{/cach-cai-win}">Cách cài Win</a>
+                  </li>
+                  <li class="sub_menu_item">
+                    <a th:href="@{/tao-usb-boot}">Tạo USB Boot</a>
+                  </li>
+                  <li class="sub_menu_item">
+                    <a th:href="@{/phuc-hoi-du-lieu}">Phục hồi dữ liệu</a>
+                  </li>
+                  <li class="sub_menu_item">
+                    <a th:href="@{/fix-loi-win}">Fix lỗi win</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/dien-thoai}">Điện Thoại</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/may-tinh}">Máy tính</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Game</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/ky-thuat-so}">Kỹ Thuật Số</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/ung-dung}">Ứng dụng</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a href="javascript:void(0)">Review</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/tai-ve}" class="navigation-menu-item">
+              Download
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a th:href="@{/phan-mem}">Phần mềm</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/tai-lieu}">Tài liệu</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/font-chu}">Font chữ</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/tai-driver}">Driver</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/anh-dep}">Ảnh đẹp</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a th:href="@{/mon-hoc}" class="navigation-menu-item">
+              Môn học
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a th:href="@{/toan}">Toán</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/tieng-anh}">Tiếng Anh</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/van-hoc}">Văn học</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item-container">
+            <a href="#" class="navigation-menu-item home-icon">
+              <i class="fas fa-bars"></i>
+            </a>
+            <ul class="dropdown_menu">
+              <li class="dropdown_menu_item">
+                <a th:href="@{/marketing}">Marketing</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/thuat-ngu}">Thuật ngữ</a>
+              </li>
+              <li class="dropdown_menu_item">
+                <a th:href="@{/kham-pha}">Khám phá</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="body-container" th:fragment="bread-crumb(categoryList, title)">
+    <div style="line-height: 30px; margin-bottom:10px; font-size: 15px">
+
+      <a th:href="@{/}" title="Trang chủ">
+        Home
+      </a>
+      >
+      <th:block th:if="${categoryList != null and !categoryList.isEmpty()}">
+        <th:block th:each="category : ${categoryList}">
+          <a th:href="@{'/' + ${category.path}}" th:title="${category.categoryName}" th:text="${category.categoryName}">
+          </a>
+          >
+        </th:block>
+      </th:block>
+      <span th:text="${title}"></span>
+
+    </div>
+  </div>
+
+  <div class="body-container" th:fragment="second-navigation-bar(link, categoryList)">
+    <nav class="second_navigation" style="height: 38px;">
+      <ul>
+        <th:block th:each="category : ${categoryList}">
+
+          <li th:if="${category.path == link}" class="active">
+            <a th:href="@{'/' + ${category.path}}" th:title="${category.categoryName}" th:text="${category.categoryName}"></a>
+          </li>
+          <li th:if="${category.path != link}">
+            <a th:href="@{'/' + ${category.path}}" th:title="${category.categoryName}" th:text="${category.categoryName}"></a>
+          </li>
+
+        </th:block>
+      </ul>
+      <span class="more_item"><i class="momizat-icon-arrow-down"></i></span>
+    </nav>
+  </div>
+
+  <div class="post-box" style=" background: #34495e; " th:fragment="order-form(bankPayment,postPayment,paypalPayment,courseId)">
+    <h2 style="text-align: center; margin-bottom: 5px; margin-top: 20px; color:#fff">ĐĂNG KÝ KHÓA HỌC</h2>
+    <p style="color: #fff; text-align: center">###########################</p>
+    <form id="form-course" method="post">
+
+      <p>
+        <label style="font-weight: bold; color: #fff">Tên của bạn <span style="color: red">*</span></label><br />
+        <input type="text" style="color: black; " name="txtName" value="" size="40" placeholder="Tên của bạn (required)" />
+        <br />
+      </p>
+
+      <p>
+        <label style="font-weight: bold; color: #fff">Điện thoại của bạn <span style="color: red">*</span></label> <br />
+        <input type="text" style="color: black; " name="txtPhone" value="" size="40" placeholder="Điện thoại của bạn (required)">
+        <br />
+      </p>
+      <p>
+        <label style="font-weight: bold; color: #fff">Email của bạn <span style="color: red">*</span></label> <br />
+        <input type="email" style="color: black; " name="txtEmail" value="" size="40" placeholder="Email của bạn (required)" />
+        <br />
+      </p>
+
+      <p>
+        <label style="font-weight: bold; color: #fff">Link facebook</label> <br />
+        <input type="text" style="color: black; " name="txtFacebook" value="" size="40" placeholder="Facebook của bạn" />
+        <br />
+      </p>
+
+      <div id="order_form_bank" style="background: #fff; padding: 20px; margin: 15px 0px 20px 0px; ">
+        <h4 style="text-align: center">CHỌN HÌNH THỨC THANH TOÁN</h4> <br />
+        <div>
+          <div>
+            <p>
+              <strong>
+                <input checked type="radio" name="payment_type" value="1" class="paycheck" />
+                <label>THANH TOÁN QUA NGÂN HÀNG</label>
+              </strong>
+            </p>
+            <div class="paylist" style="display: block">
+              <ul style="margin-top: 15px">
+                <li>
+                  <strong>VIETCOMBANK </strong> <br />
+                  Chủ tài khoản: Nguyễn Văn Cường <br />
+                  Số tài khoản: 0251002704529 <br />
+                  Chi nhánh: Bình Tây, Q6, TP HCM
+                </li>
+                <li>
+                  <strong>SACOMBANK </strong> <br />
+                  Chủ tài khoản: Nguyễn Văn Cường <br />
+                  Số tài khoản: 050053235619 <br />
+                  Chi nhánh: Cưkuin Đăklăk
+                </li>
+                <li>
+                  <strong>VIB </strong> <br />
+                  Chủ tài khoản: Nguyễn Văn Cường <br />
+                  Số tài khoản: 410704060192515 <br />
+                  Chi nhánh: Buôn Ma Thuột - ĐăkLăk
+                </li>
+              </ul>
+              <p><span style="color: red">Số tiền: <strong style="font-size: 18px" id="money" th:text="${#numbers.formatDecimal(bankPayment, 3, 'COMMA', 0, 'POINT')} + 'đ'"></strong></span></p>
+
+            </div>
+          </div>
+          <div>
+            <p>
+              <strong>
+                <input type="radio" name="payment_type" class="paycheck" value="2" />
+                <label>THANH TOÁN QUA BƯU ĐIỆN</label>
+              </strong>
+            </p>
+            <div class="paylist">
+              <p>Bạn phải nhập đúng địa chỉ bên dưới vì mình sẽ gửi mã kích hoạt qua đường bưu điện, thanh toán tận nhà.</p>
+              <p>
+                <input style="margin-top: 10px" type="text" name="txtAddress" value="" placeholder="Địa chỉ của bạn" />
+                <br />
+              </p>
+              <p>
+                <span style="color: red">Số tiền: <strong style="font-size: 18px" id="money" th:text="${#numbers.formatDecimal(postPayment, 3, 'COMMA', 0, 'POINT')} + 'đ'"></strong></span>.
+                Trong đó 25,000đ là phí gửi bưu điện
+              </p>
+            </div>
+          </div>
+          <div>
+            <p>
+              <strong>
+                <input type="radio" name="payment_type" class="paycheck" value="3" />
+                <label>THANH TOÁN QUA PAYPAL</label>
+              </strong>
+            </p>
+            <div class="paylist">
+              <p>Gửi $ đến địa chỉ paypal: cuongwriter@gmail.com.</p>
+              <p><span style="color: red">Số tiền: <strong style="font-size: 18px" id="money" th:text="${#numbers.formatDecimal(paypalPayment, 0, 'COMMA', 1, 'POINT')} + '$'"></strong> giá đã bao gồm phí giao dịch paypal</span></p>
+            </div>
+          </div>
+          <div>
+            <p>
+              <strong>
+                <input type="radio" name="payment_type" value="4" class="paycheck" />
+                <label>THANH TOÁN QUA VÍ MOMO</label>
+              </strong>
+            </p>
+            <div class="paylist">
+              <p>Thanh toán qua ví với số điện thoại: 0979306603.</p>
+              <p><span style="color: red">Số tiền: <strong style="font-size: 18px" id="money" th:text="${#numbers.formatDecimal(bankPayment, 3, 'COMMA', 0, 'POINT')} + 'đ'"></strong></span></p>
+            </div>
+          </div>
+
+          <div><br />
+            <p><strong>Lưu ý: </strong>Nội dung gửi tiền là <strong>[SĐT]</strong> mà bạn đã nhập ở trên.</p>
+          </div>
+        </div>
+        <input type="hidden" name="txtCourseID" th:value="${courseId}" />
+        <input type="hidden" name="txtTotal" id="total" th:value="${#numbers.formatDecimal(bankPayment, 3, 'COMMA', 0, 'POINT')} + 'đ'" />
+      </div>
+      <p style="text-align: center">
+        <input type="submit" style="background: #2ecc71" value="GỬI THÔNG TIN">
+      </p>
+
+    </form>
+    <style>
+      .news-box ul {
+        list-style: circle !important
+      }
+
+      .paylist {
+        display: none;
+      }
+
+      .paylist {
+        background: #d3f4e1;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+    </style>
+
+    <script>
+      $().ready(function() {
+        $('.paycheck').click(function() {
+          $('.paylist').hide();
+          $(this).parent().parent().parent().find('.paylist').show();
+          $('#total').val($(this).parent().parent().parent().find('#money').text());
+        });
+      });
+    </script>
+    <script th:src="@{/js/validation/validateOrderCourse.js}"></script>
+    <script th:src="@{/js/ajax/order-course.js}"></script>
+  </div>
+
+  <div class="post-box" th:fragment="commentBox(postId)">
+    <div class="content">
+      <p style="margin-top: 0; ">
+        <strong>ĐĂNG BÌNH LUẬN</strong>: Thông tin của bạn sẽ được giữ bí mật.
+      </p>
+      <p>
+        <strong>Lưu ý:</strong> Sử dụng <span style="color: red">{Code}</span> để đăng code, và bình luận của bạn sẽ được kiểm duyệt cẩn thận.
+      </p>
+      <form id="comment-form">
+        <input type="hidden" name="txtPostID" th:value="${postId}">
+        <textarea class="editor">
+        </textarea>
+
+        <span style="width: 300px;display: inline-block; margin-right:20px;">
+          <input type="text" name="txtName" style="color: black; " value="" placeholder="Name (required)" />
+          <label for="txtTitle" generated="true" class="error"></label>
+        </span>
+        <span style="width: 300px;display: inline-block; margin-right:20px; ">
+          <input type="email" name="txtEmail" style="color: black; " value="" placeholder="Email (required)" />
+          <label for="txtTitle" generated="true" class="error"></label>
+        </span>
+        <input style="margin: auto; display: block;" type="submit" value="Đăng bình luận">
+      </form>
+      <script th:src="@{/js/validation/validateComment.js}"></script>
+      <script th:src="@{/js/ckeditor/ckeditor.js}"></script>
+      <script th:src="@{/js/ajax/comment.js}"></script>
+    </div>
+  </div>
+
+  <div class="post-box" style="display: flex;" th:fragment="comment(username,date,content)">
+    <img style="border: 1px solid #e0e0e0; margin-right: 20px; width: 60px; height: 60px;" src="https://freetuts.net/public/logo/main-logo.png"
+     alt="main logo png">
+    <div class="comment-content">
+      <h4 style="margin-bottom:10px;" th:text="${username}"></h4>
+      <div class="post-info" style="margin-bottom:5px;">
+        <span th:text="${#dates.format(date, 'dd/MM/yyyy - HH:mm:ss')}"></span>
+      </div>
+      <p style="margin:0;" th:utext="${content}"></p>
+    </div>
+  </div>
+
+  <div class="list-post" th:fragment="list-post">
+    <th:block th:if="${!listPost.empty}">
+      <div th:each="post : ${listPost}" class="post-content">
+        <h1>
+          <a th:href="@{${post.postId}}" th:text="${post.title}"></a>
+        </h1>
+        <div style="display: flex;">
+          <a th:href="@{${post.postId}}">
+            <img th:if="${post.image != null and post.image != ''}" th:src="@{'/image/'+${post.image}}">
+            <img th:if="${post.image == null or post.image == ''}" th:src="@{/image/no_image.png}">
+          </a>
+          <p th:text="${post.description}"></p>
+        </div>
+      </div>
+    </th:block>
+
+    <div class="pagination-1" th:fragment="pagination-1">
+      <div th:if="${listPost.totalPages gt 1}" th:with="totalPage=${listPost.totalPages}" style="margin-bottom: 30px;">
+
+        <span th:if="${listPost.number > 0}" class="pagination"> ​ <a th:href="@{${category.path} + '?page=1'}" th:text="'<<'"></a>
+          ​
+        </span>
+
+        <span th:if="${listPost.hasPrevious()}" class="pagination"> ​
+
+          <a th:href="@{${category.path} + '?page=' + ${listPost.number}}" th:text="'<'"></a> ​
+
+        </span>
+
+        <span th:if="${totalPage <= 7}" th:each="pageNumber : ${#numbers.sequence(1 ,totalPage)}">
+
+          <a th:if="${listPost.number + 1 eq pageNumber}" class="present-page"
+					th:href="@{${category.path} + '?page=' + ${pageNumber}}"th:text=${pageNumber}></a>
+
+          <a th:text=${pageNumber} th:if="${listPost.number + 1 != pageNumber}" class="pagination"
+					th:href="@{${category.path} + '?page=' + ${pageNumber}}"></a>
+
+				</span>
+
+        <span th:if="${totalPage > 7 and listPost.number <= 4}" th:each="pageNumber : ${#numbers.sequence(1 ,7)}">
+
+          <a th:if="${listPost.number + 1 eq pageNumber}" class="present-page"
+					th:href="@{${category.path} + '?page=' + ${pageNumber}}" th:text=${pageNumber}></a>
+
+          <a th:text=${pageNumber} th:if="${listPost.number + 1 != pageNumber}" class="pagination"
+					th:href="@{${category.path} + '?page=' + ${pageNumber}}"></a>
+
+				</span>
+
+        <span th:if="${totalPage > 7 and listPost.number - 6 gt 1 and listPost.number + 3 < totalPage -1}"
+					th:each="pageNumber : ${#numbers.sequence(listPost.number - 3,listPost.number + 3)}">
+
+					<a th:if="${listPost.number + 2 eq pageNumber}" class="present-page"
+					th:href="@{${category.path} + '?page=' + ${pageNumber + 1}}" th:text=${pageNumber}></a>
+
+          <a th:text=${pageNumber} th:if="${listPost.number + 1 != pageNumber + 1}" class="pagination"
+					th:href="@{${category.path} + '?page=' + ${pageNumber + 1}}"></a>
+
+				</span>
+
+        <span th:if="${totalPage > 7 and listPost.number >= totalPage - 4}"
+					th:each="pageNumber : ${#numbers.sequence(listPost.totalPages - 6 ,listPost.totalPages)}">
+
+					<a th:if="${listPost.number + 1 eq pageNumber}" class="present-page"
+					th:href="@{${category.path} + '?page=' + ${pageNumber}}" th:text=${pageNumber}></a>
+
+          <a th:text=${pageNumber} th:if="${listPost.number + 1 != pageNumber}" class="pagination"
+					th:href="@{${category.path} + '?page=' + ${pageNumber}}"></a>
+
+				</span>
+
+        <span th:if="${listPost.hasNext()}" class="pagination"> ​
+          <a th:href="@{${category.path} + '?page=' + ${listPost.number + 2}}" th:text="'>'"></a> ​
+				</span>
+
+        <span th:if="${listPost.number + 2 <= totalPage}" class="pagination">
+					​ <a th:href="@{${category.path} + '?page=' + ${totalPage}}" th:text="'>>'"></a> ​
+				</span>
+
+			</div>
+		</div>
+
+	</div>
+
+  <div class="top-side-panel" th:fragment="top-side-panel">
+  </div>
+
+  <div class="side-box" style="border:1px solid green;" th:fragment="side-panel-posts(id,postList)">
+
+      <header class="box-header" style="background:green;">
+        <h3>Danh sách bài học</h3>
+      </header>
+
+      <div class="side-box-scrolling-container" style="max-height: 1500px;">
+        <div th:each="post : ${postList}" class="side-box-scrolling-item">
+
+          <a th:if="${id != post.postId}" class="post-title" style="margin-left: 0px" th:href="@{'/' + ${post.postId}}"
+              th:title="${post.title}" th:text="${post.title}"></a>
+
+          <a th:if="${id == post.postId}" class="post-title" style="margin-left: 0px; color: #f09217;" th:href="@{'/' + ${post.postId}}"
+              th:title="${post.title}" th:text="${post.title}"></a>
+
+        </div>
+      </div>
+
+  </div>
+
+  <div class="fix-side-panel" id="fix-side-panel" th:fragment="fix-side-panel">
+    <div class="ma-giam-gia-side-panel">
+      <table>
+        <tbody>
+          <tr>
+            <td colspan="3" class="ma-giam-gia-header">MÃ GIẢM GIÁ</td>
+          </tr>
+          <tr th:each="coupon : ${couponList}">
+            <td th:text="${coupon.discountName}"></td>
+            <td th:text="${coupon.percentage} + '%'"></td>
+            <td>
+              <a th:href="${coupon.discountLinkPage}" class="get-code-btn" rel="nofollow" th:title="${coupon.code}"
+              th:data-thing = "${coupon.code}" style="margin-bottom: 0px;" target="_blank" th:onclick="layMa(this.getAttribute('data-thing'));">
+                Lấy Mã
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <script>
+        function layMa(code) {
+          var discountCode = prompt("Copy mã giảm giá, nhớ đọc kỹ hướng dẫn sử dụng nhé bạn.", code);
+        }
+      </script>
+    </div>
+  </div>
+
+  <div th:fragment="footer">
+    <footer>
+      <div class="footer-container">
+        <div class="footer-item">
+          <div class="footer-item-head">
+            Liên hệ
+          </div>
+          <div class="footer-item-body">
+            <ul class="footer-item-body-list">
+              <li>
+                <a th:href="@{/gioi-thieu}">Giới thiệu</a>
+              </li>
+              <li>
+                <a th:href="@{/chinh-sach-bao-mat}">Chính sách</a>
+              </li>
+              <li>
+                <a th:href="@{/dieu-khoan-su-dung}">Điều khoản</a>
+              </li>
+              <li>
+                <a th:href="@{/lien-he}">Liên hệ</a>
+              </li>
+              <li>
+                <a th:href="@{/bang-bao-gia-dat-banner-va-text-link}">Guest Post</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-item">
+          <div class="footer-item-head">
+            Mã giảm giá
+          </div>
+          <div class="footer-item-body">
+            <ul class="footer-item-body-list">
+              <li>
+                <a href="#">TinoHost</a>
+              </li>
+              <li>
+                <a href="#">Azdigi</a>
+              </li>
+              <li>
+                <a href="#">Vultr</a>
+              </li>
+              <li>
+                <a href="#">Hawkhost</a>
+              </li>
+              <li>
+                <a href="#">Stablehost</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-item">
+          <div class="footer-item-head">
+            Khóa học
+          </div>
+          <div class="footer-item-body">
+            <ul class="footer-item-body-list">
+              <li>
+                <a style="color: pink" href="#">Javascript</a>
+              </li>
+              <li>
+                <a style="color: pink" href="#">Front-end</a>
+              </li>
+              <li>
+                <a style="color: pink" href="#">NodeJS</a>
+              </li>
+              <li>
+                <a style="color: pink" href="#">React JS</a>
+              </li>
+              <li>
+                <a style="color: pink" href="#">Fullstack</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-item last">
+          <div class="footer-item-head">
+            Giới thiệu
+          </div>
+          <div class="footer-item-body">
+            <p>
+              Admin <strong style="color: pink">Cường</strong>, quản lý chính của website.
+            </p>
+            <ul class="footer-item-body-list">
+              <li>
+                Email: thehalfheart@gmail.com
+              </li>
+              <li>
+                Phone/Zalo: 0979306603
+              </li>
+              <li>
+                Skype: thehalfheart
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="copyright">
+      <div class="copyright-container">
+        <p class="copyright-text">
+          <a href="https://phongtro123.com/tinh-thanh/ho-chi-minh" title="Cho thuê phòng trọ" target="_blank">
+            Cho thuê phòng trọ
+          </a>
+          |
+          <a href="https://bds123.vn/cho-thue-nha-ho-chi-minh.html" title="cho thuê nhà" target="_blank">
+            cho thuê nhà
+          </a>
+          |
+          <a href="https://atrungroi.com/xsmn-ket-qua-xo-so-mien-nam.html" title="XSMN" target="_blank">
+            XSMN
+          </a>
+          | Khu đô thị
+          <a href="https://aquacityvn.vn" title="Aqua City" target="_blank">
+            Aqua City
+          </a>
+          Novaland
+          <br>
+          <br>
+          <span>
+            @2020 - Freetuts.net. All Right Reserved
+          </span>
+          <br>
+          Theme <strong>GoodNews</strong>, nền tảng <strong>Codeigniter</strong>, VPS mua tại
+          <a href="https://freetuts.net/recommended/tinohost" target="_blank" rel="noopener noreferrer nofollow external" title="tinohost">
+            Tinohost
+          </a>
+          <br>
+          <a href="//www.dmca.com/Protection/Status.aspx?ID=4495f67a-93e3-4127-a6fe-eb89933037aa&amp;refurl=https://freetuts.net/" title="DMCA.com Protection Status" class="dmca-badge" target="_blank" rel="nofollow">
+            <img style="margin-top: 10px; width: auto;" th:src="@{/image/dmca-protected.png}" alt="DMCA.com Protection Status">
+          </a>
+        </p>
+      </div>
+    </div>
+    <script th:src="@{/js/owlcarousel/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/sticky.js}" charset="utf-8"></script>
+    <script th:src="@{/js/code.js}" charset="utf-8"></script>
+    <script th:src="@{/js/highlight.js}"></script>
+    <script>hljs.highlightAll();</script>
+  </div>
+</body>
+
+</html>

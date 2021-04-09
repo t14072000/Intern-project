@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="adminFragments :: admin-head" th:with="title='Create course'" />
+
+<body>
+
+  <div th:replace="adminFragments :: admin-preloader" />
+
+  <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+    <div th:replace="adminFragments :: admin-navigation-topbar(user=${username})" />
+
+    <div th:replace="adminFragments :: admin-navigation-sidebar" />
+
+    <div class="page-wrapper">
+
+      <div th:replace="adminFragments :: admin-page-greeting(user=${username})" />
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12" style="padding: 0 100px">
+            <div class="card">
+              <div class="card-body">
+                <form id="content-form" method="post" enctype="multipart/form-data">
+                  <h1 style="margin-bottom: 60px;">Create course</h1>
+                  <input class="form-input form-control form-control-lg" type="text" name="txtCourseName" value="" placeholder="Course name" />
+                  <label for="txtCourseName" generated="true" class="error"></label><br />
+
+                  <input class="form-input form-control form-control-lg" type="text" name="txtTeacher" value="" placeholder="Teacher" />
+                  <label for="txtTeacher" generated="true" class="error"></label><br />
+
+                  <input class="form-input form-control form-control-lg" type="text" name="txtTime" value="" placeholder="Time" />
+                  <label for="txtTime" generated="true" class="error"></label><br />
+
+                  <input class="form-input form-control form-control-lg" type="url" name="txtLink" value="" placeholder="Link" />
+                  <label for="txtLink" generated="true" class="error"></label><br />
+
+                  <input id="txtPrice" class="form-input form-control form-control-lg" type="text" name="txtPrice" value="" placeholder="Price" />
+                  <label for="txtPrice" generated="true" class="error"></label><br />
+
+                  <input class="form-input form-control form-control-lg" type="text" name="txtDiscount" value="" placeholder="Discount" />
+                  <label for="txtDiscount" generated="true" class="error"></label><br />
+
+                  <input id="txtDiscountPrice" class="form-input form-control form-control-lg" type="text" name="txtDiscountPrice" value="" placeholder="Discounted price" />
+                  <label for="txtDiscountPrice" generated="true" class="error"></label><br />
+
+                  <input class="form-input form-control form-control-lg" type="text" name="txtType" value="" placeholder="Type" />
+                  <label for="txtType" generated="true" class="error"></label><br />
+
+                  <textarea class="form-input form-control form-control-lg" name="txtDescription" rows="8" cols="80" placeholder="Description"></textarea>
+                  <br />
+
+                  <input class="chosen-value form-control form-control-lg" type="text" name="txtCategory" value="" placeholder="Select category">
+                  <ul class="value-list">
+                    <li th:each="category : ${categoryList}" th:text="${category.categoryName}"></li>
+                  </ul>
+                  <label for="txtCategory" generated="true" class="error"></label>
+                  <br />
+
+                  <input class="chosen-value1 form-control form-control-lg" type="text" name="txtTemplate" value="" placeholder="Select template">
+                  <ul class="value-list1">
+                    <li th:each="template : ${templateList}" th:text="${template.templateName}"></li>
+                  </ul>
+                  <label for="txtTemplate" generated="true" class="error"></label><br />
+
+                  <textarea class="editor" rows="8">
+                  </textarea>
+
+                  <div class="button_outer">
+                    <div class="btn_upload">
+                      <input type="file" id="upload_file" name="fileUp">
+                      Upload Image
+                    </div>
+                    <div class="processing_bar"></div>
+                    <div class="success_box"></div>
+                  </div>
+                  <div class="error_msg"></div>
+                  <div class="uploaded_file_view" id="uploaded_view">
+                    <span class="file_remove">X</span>
+                  </div>
+                  <script th:src="@{/js/uploadImg.js}"></script>
+
+                  <button class="submit" type="submit"><span>Submit</span></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:include="adminFragments :: admin-script" />
+
+  <script th:src="@{/js/validation/validateCreateCourse.js}"></script>
+  <script th:src="@{/js/ckeditor/ckeditor.js}"></script>
+  <script th:src="@{/js/ajax/create-course.js}"></script>
+  <script th:src="@{/js/selectInput.js}"></script>
+  <script th:src="@{/js/selectInput1.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head" th:with="title=${Post.title}" >
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div th:insert="fragments :: navigation-bar"></div>
+
+	<div class="body">
+
+    <div th:replace="fragments :: bread-crumb(categoryList=${breadCrumbCategoryList}, title=${Post.title})">
+    </div>
+
+		<div th:replace="fragments :: second-navigation-bar(link=${link}, categoryList=${categoryList})">
+    </div>
+
+		<div class="body-container">
+			<div class="main-panel">
+				<div class="post-box">
+					<h1 th:text="${Post.title}"></h1>
+
+          <div class="post-info">
+            <span th:text="'Đăng bởi ' + ${Post.author} + ' | ' + 'Vào ngày: ' + ${#dates.format(Post.date, 'dd-MM-yyyy')}"></span>
+          </div>
+
+					<!--show category content-->
+          <div class="content" style="min-height: 175px;">
+            <div style="float:right;" th:if="${Post.image} != null and ${Post.image} != ''">
+              <img th:src="@{'/image/'+${Post.image}}" th:alt="${Post.title}" style="max-width: 200px; max-height: 160px; padding-left: 20px">
+            </div>
+            <p th:text="${Post.description}"></p>
+          </div>
+
+					<div th:if="${!categoryMapping.empty}" >
+						<div th:each="category : ${categoryMapping}">
+							<div th:if="${category.value.size gt 0}">
+								<h2 th:text="${category.key}"></h2>
+								<div class="subcate-child">
+									<div th:each="subCategory : ${category.value}"
+										class="subcate-item">
+										<a th:href="@{'/' + ${subCategory.key}}" >
+
+                      <img th:if="${subCategory.value.image} != null and ${subCategory.value.image} != ''"
+            						th:src="@{'/image/'+${subCategory.value.image}}">
+
+            					<img th:if="${subCategory.value.image} == null or ${subCategory.value.image} == ''"
+            						th:src="@{/image/no_image.png}">
+
+                      <span th:text="${subCategory.value.title}"></span>
+
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- add more category-content(if have) -->
+					<div th:text="${Post.postContent}"></div>
+				</div>
+
+				<!-- see more post (random post)
+				<div th:insert="fragments :: see-more"></div>-->
+			</div>
+			<div class="side-panel">
+        <div th:replace="fragments :: fix-side-panel" th:with="couponList=${couponList}"/>
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="fragments :: footer"></div>
+
+</body>
+</html>
